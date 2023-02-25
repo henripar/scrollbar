@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['thumbColor', 'trackColor'],
+  props: ['thumbColor', 'trackColor', 'scrollbarWidth'],
   data() {
     // return {
     //   thumbColor: 'blue',
@@ -33,6 +33,7 @@ export default {
       return {
         '--thumb-color': this.thumbColor,
         '--track-color': this.trackColor,
+        '--scrollbar-width': this.scrollbarWidth + 'px',
       };
     },
   },
@@ -94,7 +95,7 @@ export default {
 <style scoped>
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: var(--scrollbar-width);
 }
 
 /* Track */

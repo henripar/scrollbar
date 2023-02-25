@@ -42,6 +42,7 @@ export default {
 <style scoped>
 .colorPickerContainer {
   position: absolute;
+  z-index: 1;
 }
 .vc-chrome-alpha-wrap {
   display: none !important;

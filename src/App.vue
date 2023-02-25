@@ -3,13 +3,15 @@ import HelloWorld from './components/HelloWorld.vue';
 import TheWelcome from './components/TheWelcome.vue';
 import ScrollPreview from './components/ScrollPreview.vue';
 import ColorPicker from './components/ColorPicker.vue';
+import VueNumberInput from '@chenfengyuan/vue-number-input';
+import NumberInput from './components/NumberInput.vue';
 
 export default {
   data() {
     return {
       thumbColor: '#194D33A8',
       trackColor: '#fff',
-      width: ['#e5b178', '#d670b4'],
+      width: 10,
       borderRadius: '20px',
       borderWidth: '20px',
       borderStyle: 'solid',
@@ -29,6 +31,14 @@ export default {
       this.thumbColor = e;
       console.log(e);
     },
+    updateScrollbarWidth(e) {
+      if (e == 'add') {
+        this.width = this.width + 1;
+      }
+      if (e == 'reduce') {
+        this.width = this.width - 1;
+      }
+    },
     openColorPicker(position) {
       if (position === 'thumb') {
         this.isThumbColorPickerOpen = !this.isThumbColorPickerOpen;
@@ -37,7 +47,13 @@ export default {
       }
     },
   },
-  components: { HelloWorld, ScrollPreview, TheWelcome, ColorPicker },
+  components: {
+    HelloWorld,
+    ScrollPreview,
+    TheWelcome,
+    ColorPicker,
+    NumberInput,
+  },
 };
 </script>
 
@@ -45,27 +61,42 @@ export default {
   <div class="mainContainer">
     <div class="settingsContainer">
       <div class="colorPickerContainer">
-        <span
-          @click="openColorPicker('thumb')"
-          :style="{ background: thumbColor }"
-          class="colorBox"
-        />
-        <ColorPicker
-          v-if="isThumbColorPickerOpen"
-          @colorUpdated="updateThumbColor"
-          :color="thumbColor"
-        />
+        <span>Thumb Color</span>
+        <span>
+          <span
+            @click="openColorPicker('thumb')"
+            :style="{ background: thumbColor }"
+            class="colorBox"
+          />
+          <ColorPicker
+            v-if="isThumbColorPickerOpen"
+            @colorUpdated="updateThumbColor"
+            :color="thumbColor"
+          />
+        </span>
       </div>
-      <div>
-        <span
-          @click="openColorPicker('track')"
-          :style="{ background: trackColor }"
-          class="colorBox"
-        />
-        <ColorPicker
-          v-if="isTrackColorPickerOpen"
-          @colorUpdated="updateTrackColor"
-          :color="trackColor"
+      <div class="colorPickerContainer">
+        <span>Track Color</span>
+        <span>
+          <span
+            @click="openColorPicker('track')"
+            :style="{ background: trackColor }"
+            class="colorBox"
+          />
+          <ColorPicker
+            v-if="isTrackColorPickerOpen"
+            @colorUpdated="updateTrackColor"
+            :color="trackColor"
+          />
+        </span>
+      </div>
+      <div class="scrollBarWidthSettingConteiner">
+        <label for="width">Scrollbar with</label>
+        <NumberInput
+          @numberUpdated="updateScrollbarWidth"
+          min="1"
+          max="50"
+          :number="width"
         />
       </div>
     </div>
@@ -74,6 +105,7 @@ export default {
       <ScrollPreview
         :trackColor="this.trackColor"
         :thumbColor="this.thumbColor"
+        :scrollbarWidth="this.width"
       />
     </div>
     <div class="codeOutputContainer">
@@ -87,6 +119,7 @@ export default {
 .mainContainer {
   display: grid;
   grid-template-columns: 1fr 3fr 2fr;
+  grid-column-gap: 20px;
   width: 90%;
   margin: 1rem auto;
 }
@@ -95,10 +128,22 @@ export default {
   width: 20px;
   display: block;
   border-radius: 7px;
-  margin-left: 1rem;
   position: relative;
 }
 .colorBox:hover {
   cursor: pointer;
+}
+
+.colorPickerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.scrollBarWidthSettingConteiner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem 0;
 }
 </style>
