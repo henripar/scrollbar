@@ -1,0 +1,59 @@
+<template>
+  <div class="colorPickerContainer">
+    <Chrome v-model="colors" @update="this.updateValue" />
+  </div>
+</template>
+
+<script>
+import { Chrome } from '@ckpack/vue-color';
+console.log(Chrome);
+export default {
+  name: 'ColorPicker',
+  props: ['color'],
+  data() {
+    return {
+      colors: this.color,
+    };
+  },
+  emits: ['colorUpdated'],
+  components: {
+    Chrome,
+  },
+  methods: {
+    updateValue() {
+      console.log(this.colors);
+      this.$emit('colorUpdated', this.colors.hex);
+    },
+  },
+  watch: {
+    colors: {
+      handler() {
+        console.log(this.colors);
+        this.$emit(
+          'colorUpdated',
+          this.colors?.hex?.toLowerCase() ?? this.colors.toLowerCase()
+        );
+      },
+      immediate: true,
+    },
+  },
+};
+</script>
+<style scoped>
+.colorPickerContainer {
+  position: absolute;
+}
+.vc-chrome-alpha-wrap {
+  display: none !important;
+}
+.vc-checkerboard {
+  display: none;
+}
+.vc-chrome-controls {
+  display: flex !important;
+  align-items: center !important;
+}
+.vc-chrome-fields-wrap {
+  display: none;
+}
+</style>
