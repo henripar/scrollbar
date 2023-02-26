@@ -12,6 +12,7 @@
   "dependencies": {
     "@chenfengyuan/vue-number-input": "^2.0.1",
     "@ckpack/vue-color": "^1.2.0",
+    "plausible-tracker": "^0.3.8",
     "vue": "^3.2.47"
   },
   "devDependencies": {
