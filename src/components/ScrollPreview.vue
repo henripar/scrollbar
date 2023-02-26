@@ -1,6 +1,13 @@
 <script>
 export default {
-  props: ['thumbColor', 'trackColor', 'scrollbarWidth'],
+  props: [
+    'thumbColor',
+    'trackColor',
+    'scrollbarWidth',
+    'scrollbarBorderRadius',
+    'scrollbarThumbBorderWidth',
+    'scrollbarThumbBorderColor',
+  ],
   data() {
     // return {
     //   thumbColor: 'blue',
@@ -34,6 +41,9 @@ export default {
         '--thumb-color': this.thumbColor,
         '--track-color': this.trackColor,
         '--scrollbar-width': this.scrollbarWidth + 'px',
+        '--scrollbar-border-radius': this.scrollbarBorderRadius + 'px',
+        '--scrollbar-thumb-border-width': this.scrollbarThumbBorderWidth + 'px',
+        '--scrollbar-thumb-border-color': this.scrollbarThumbBorderColor,
       };
     },
   },
@@ -42,8 +52,41 @@ export default {
 
 <template>
   <div :style="createCSSVariables()" class="container">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>You’ve successfully created a project with Vue</h3>
+    <h2 class="previewHeader">CSS Scrollbar Selectors</h2>
+    <p>
+      There are multiple CSS pseudo-elements that allows us to custoimize
+      elements scrollbar on webkit based browsers.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
+      nobis voluptatem sapiente est! Quis, similique animi provident voluptas
+      maxime aliquam ad tenetur mollitia harum voluptate unde voluptatum
+      laboriosam cumque! Architecto, quas ducimus soluta labore sapiente
+      doloribus quasi blanditiis aperiam voluptatem nobis cumque ipsa
+      reprehenderit enim sequi, delectus iusto perspiciatis placeat! Aut culpa
+      modi dolor veritatis voluptate corporis aliquid rerum! Neque eveniet, illo
+      sint corporis hic eum officiis nam delectus qui quod, expedita impedit
+      porro dolor debitis non adipisci. Laborum, quae odio. Dolorum doloremque
+      quis aperiam error, tempore autem sit! Quibusdam animi officia praesentium
+      voluptatem maxime explicabo beatae consequatur voluptatum odit rerum nisi
+      optio temporibus quae, placeat magnam. Neque mollitia explicabo fuga ullam
+      soluta quaerat omnis facilis perspiciatis incidunt expedita.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
+      nobis voluptatem sapiente est! Quis, similique animi provident voluptas
+      maxime aliquam ad tenetur mollitia harum voluptate unde voluptatum
+      laboriosam cumque! Architecto, quas ducimus soluta labore sapiente
+      doloribus quasi blanditiis aperiam voluptatem nobis cumque ipsa
+      reprehenderit enim sequi, delectus iusto perspiciatis placeat! Aut culpa
+      modi dolor veritatis voluptate corporis aliquid rerum! Neque eveniet, illo
+      sint corporis hic eum officiis nam delectus qui quod, expedita impedit
+      porro dolor debitis non adipisci. Laborum, quae odio. Dolorum doloremque
+      quis aperiam error, tempore autem sit! Quibusdam animi officia praesentium
+      voluptatem maxime explicabo beatae consequatur voluptatum odit rerum nisi
+      optio temporibus quae, placeat magnam. Neque mollitia explicabo fuga ullam
+      soluta quaerat omnis facilis perspiciatis incidunt expedita.
+    </p>
     <p>
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
       nobis voluptatem sapiente est! Quis, similique animi provident voluptas
@@ -101,16 +144,25 @@ export default {
 /* Track */
 ::-webkit-scrollbar-track {
   background: var(--track-color);
+  border-radius: var(--scrollbar-border-radius);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--thumb-color);
+  border-radius: var(--scrollbar-border-radius);
+  border: var(--scrollbar-thumb-border-width) solid
+    var(--scrollbar-thumb-border-color);
 }
 .container {
   height: 60vh;
   overflow-y: scroll;
 }
+
+.previewHeader {
+  color: white;
+}
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
@@ -119,6 +171,10 @@ h1 {
 
 h3 {
   font-size: 1.2rem;
+}
+
+p {
+  margin: 1rem 0;
 }
 
 .greetings h1,
