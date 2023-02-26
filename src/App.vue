@@ -1,6 +1,4 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import TheWelcome from './components/TheWelcome.vue';
 import ScrollPreview from './components/ScrollPreview.vue';
 import ColorPicker from './components/ColorPicker.vue';
 import NumberInput from './components/NumberInput.vue';
@@ -14,8 +12,6 @@ export default {
       scrollbarBorderRadius: 10,
       scrollbarThumbBorderWidth: 0,
       scrollbarThumbBorderColor: '#232E33',
-      borderStyle: 'solid',
-      borderColor: 'blue',
       isThumbColorPickerOpen: false,
       isTrackColorPickerOpen: false,
       isThumbBorderColorPickerOpen: false,
@@ -31,10 +27,6 @@ export default {
     },
     updateThumbBorderColor(e) {
       this.scrollbarThumbBorderColor = e;
-    },
-    updateColor(e) {
-      this.thumbColor = e;
-      console.log(e);
     },
     updateScrollbarWidth(e) {
       if (e == 'add') {
@@ -108,9 +100,7 @@ export default {
     },
   },
   components: {
-    HelloWorld,
     ScrollPreview,
-    TheWelcome,
     ColorPicker,
     NumberInput,
   },
@@ -119,7 +109,7 @@ export default {
 
 <template>
   <header>
-    <img class="logo" src="./assets/scrollbar_logo3.png" alt="logo" />
+    <img class="logo" src="./assets/logo.png" alt="logo" />
     <h1 class="title">Scrollbar.app</h1>
   </header>
   <div class="mainContainer">
@@ -198,13 +188,13 @@ export default {
         </span>
       </div>
       <div class="githubBtnContainer">
-        <span class="githubBtn"
+        <a href="https://github.com/henripar/scrollbar" class="githubBtn"
           ><img class="githubLogo" src="./assets/github-mark-white.png" /> View
-          on Github</span
+          on Github</a
         >
       </div>
     </div>
-    <!-- <ColorPicker @colorUpdated="updateTrackColor" :color="trackColor" /> -->
+
     <div class="scrollPreviewContainer">
       <ScrollPreview
         :trackColor="this.trackColor"
@@ -253,7 +243,6 @@ export default {
 </template>
 
 <style scoped>
-/*My styles */
 .mainContainer {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -297,16 +286,13 @@ h2 {
 }
 
 .btn {
-  padding: 1rem 2rem;
+  display: block;
   border: none;
   outline: none;
   background-image: linear-gradient(90deg, #6baf8d, #6b8d8d, #6baf8d);
   border-radius: 10px;
   cursor: pointer;
   width: 170px;
-}
-
-.btn {
   margin: 10px;
   padding: 15px 45px;
   text-align: center;
@@ -314,8 +300,6 @@ h2 {
   transition: 0.5s;
   background-size: 200% auto;
   color: white;
-  border-radius: 10px;
-  display: block;
 }
 
 .btn:hover {
@@ -345,6 +329,8 @@ h2 {
   align-items: center;
   margin: 0 auto;
   width: fit-content;
+  color: rgba(235, 235, 235, 0.64);
+  text-decoration: none;
 }
 
 .githubBtn img {

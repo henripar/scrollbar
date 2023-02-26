@@ -72,3 +72,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.vc-chrome-alpha-wrap {
+  display: none !important;
+}
+.vc-checkerboard {
+  display: none;
+}
+.vc-chrome-controls {
+  display: flex !important;
+  align-items: center !important;
+}
+.vc-chrome-fields-wrap {
+  display: none;
+}
