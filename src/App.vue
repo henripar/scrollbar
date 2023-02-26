@@ -197,6 +197,12 @@ export default {
           />
         </span>
       </div>
+      <div class="githubBtnContainer">
+        <span class="githubBtn"
+          ><img class="githubLogo" src="./assets/github-mark-white.png" /> View
+          on Github</span
+        >
+      </div>
     </div>
     <!-- <ColorPicker @colorUpdated="updateTrackColor" :color="trackColor" /> -->
     <div class="scrollPreviewContainer">
@@ -286,6 +292,10 @@ header {
   width: fit-content;
 }
 
+h2 {
+  color: #ffffffe3;
+}
+
 .btn {
   padding: 1rem 2rem;
   border: none;
@@ -319,6 +329,29 @@ header {
 }
 .title {
   margin-left: 1rem;
+}
+
+.githubBtnContainer {
+  margin: 4rem auto;
+  cursor: pointer;
+}
+
+.githubBtn:hover {
+  color: #ffffffe3;
+}
+
+.githubBtn {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.githubBtn img {
+  margin-right: 1rem;
+}
+.githubLogo {
+  width: 32px;
 }
 
 @media screen and (max-width: 1260px) {

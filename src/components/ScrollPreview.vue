@@ -54,7 +54,14 @@ export default {
   <div :style="createCSSVariables()" class="container">
     <h2 class="previewHeader">CSS Scrollbar Selectors</h2>
     <p>
-      There are multiple CSS pseudo-elements that allows us to custoimize
+      Scrollbars are an essential component of any website that contains lengthy
+      content. They provide users with a way to navigate through the content
+      with ease. While browsers come with default scrollbar styles, they may not
+      always match the design of your website. This is where CSS scrollbar
+      selectors come in.
+    </p>
+    <p>
+      There are multiple CSS pseudo-elements that allows us to customize
       elements scrollbar on webkit based browsers.
     </p>
     <p>Here's a quick reminder of the available pseudo-elements.</p>
@@ -79,8 +86,11 @@ export default {
       scrollbar is displayed.
     </p>
     <p>
-      These pseudo-elements are only available on Blink and WebKit based
-      browsers.
+      It's worth noting that the selectors mentioned above only work in
+      webkit-based browsers like Google Chrome and Safari. For other browsers,
+      you can use the scrollbar selectors provided by the W3C, such as
+      scrollbar-width, scrollbar-color, scrollbar-track-color,
+      scrollbar-thumb-color, and scrollbar-face-color.
     </p>
     <p>Supported browsers include:</p>
     <ul>
@@ -91,81 +101,36 @@ export default {
       <li>Vivaldi</li>
       <li>Opera</li>
     </ul>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
-      nobis voluptatem sapiente est! Quis, similique animi provident voluptas
-      maxime aliquam ad tenetur mollitia harum voluptate unde voluptatum
-      laboriosam cumque! Architecto, quas ducimus soluta labore sapiente
-      doloribus quasi blanditiis aperiam voluptatem nobis cumque ipsa
-      reprehenderit enim sequi, delectus iusto perspiciatis placeat! Aut culpa
-      modi dolor veritatis voluptate corporis aliquid rerum! Neque eveniet, illo
-      sint corporis hic eum officiis nam delectus qui quod, expedita impedit
-      porro dolor debitis non adipisci. Laborum, quae odio. Dolorum doloremque
-      quis aperiam error, tempore autem sit! Quibusdam animi officia praesentium
-      voluptatem maxime explicabo beatae consequatur voluptatum odit rerum nisi
-      optio temporibus quae, placeat magnam. Neque mollitia explicabo fuga ullam
-      soluta quaerat omnis facilis perspiciatis incidunt expedita.
+    <p class="last">
+      In conclusion, CSS scrollbar selectors provide web developers with a way
+      to customize the appearance of scrollbars and make them match the design
+      of their websites. By using these selectors, you can create a more
+      cohesive and aesthetically pleasing user experience for your visitors.
     </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
-      nobis voluptatem sapiente est! Quis, similique animi provident voluptas
-      maxime aliquam ad tenetur mollitia harum voluptate unde voluptatum
-      laboriosam cumque! Architecto, quas ducimus soluta labore sapiente
-      doloribus quasi blanditiis aperiam voluptatem nobis cumque ipsa
-      reprehenderit enim sequi, delectus iusto perspiciatis placeat! Aut culpa
-      modi dolor veritatis voluptate corporis aliquid rerum! Neque eveniet, illo
-      sint corporis hic eum officiis nam delectus qui quod, expedita impedit
-      porro dolor debitis non adipisci. Laborum, quae odio. Dolorum doloremque
-      quis aperiam error, tempore autem sit! Quibusdam animi officia praesentium
-      voluptatem maxime explicabo beatae consequatur voluptatum odit rerum nisi
-      optio temporibus quae, placeat magnam. Neque mollitia explicabo fuga ullam
-      soluta quaerat omnis facilis perspiciatis incidunt expedita.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
-      nobis voluptatem sapiente est! Quis, similique animi provident voluptas
-      maxime aliquam ad tenetur mollitia harum voluptate unde voluptatum
-      laboriosam cumque! Architecto, quas ducimus soluta labore sapiente
-      doloribus quasi blanditiis aperiam voluptatem nobis cumque ipsa
-      reprehenderit enim sequi, delectus iusto perspiciatis placeat! Aut culpa
-      modi dolor veritatis voluptate corporis aliquid rerum! Neque eveniet, illo
-      sint corporis hic eum officiis nam delectus qui quod, expedita impedit
-      porro dolor debitis non adipisci. Laborum, quae odio. Dolorum doloremque
-      quis aperiam error, tempore autem sit! Quibusdam animi officia praesentium
-      voluptatem maxime explicabo beatae consequatur voluptatum odit rerum nisi
-      optio temporibus quae, placeat magnam. Neque mollitia explicabo fuga ullam
-      soluta quaerat omnis facilis perspiciatis incidunt expedita.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
-      nobis voluptatem sapiente est! Quis, similique animi provident voluptas
-      maxime aliquam ad tenetur mollitia harum voluptate unde voluptatum
-      laboriosam cumque! Architecto, quas ducimus soluta labore sapiente
-      doloribus quasi blanditiis aperiam voluptatem nobis cumque ipsa
-      reprehenderit enim sequi, delectus iusto perspiciatis placeat! Aut culpa
-      modi dolor veritatis voluptate corporis aliquid rerum! Neque eveniet, illo
-      sint corporis hic eum officiis nam delectus qui quod, expedita impedit
-      porro dolor debitis non adipisci. Laborum, quae odio. Dolorum doloremque
-      quis aperiam error, tempore autem sit! Quibusdam animi officia praesentium
-      voluptatem maxime explicabo beatae consequatur voluptatum odit rerum nisi
-      optio temporibus quae, placeat magnam. Neque mollitia explicabo fuga ullam
-      soluta quaerat omnis facilis perspiciatis incidunt expedita.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
-      nobis voluptatem sapiente est! Quis, similique animi provident voluptas
-      maxime aliquam ad tenetur mollitia harum voluptate unde voluptatum
-      laboriosam cumque! Architecto, quas ducimus soluta labore sapiente
-      doloribus quasi blanditiis aperiam voluptatem nobis cumque ipsa
-      reprehenderit enim sequi, delectus iusto perspiciatis placeat! Aut culpa
-      modi dolor veritatis voluptate corporis aliquid rerum! Neque eveniet, illo
-      sint corporis hic eum officiis nam delectus qui quod, expedita impedit
-      porro dolor debitis non adipisci. Laborum, quae odio. Dolorum doloremque
-      quis aperiam error, tempore autem sit! Quibusdam animi officia praesentium
-      voluptatem maxime explicabo beatae consequatur voluptatum odit rerum nisi
-      optio temporibus quae, placeat magnam. Neque mollitia explicabo fuga ullam
-      soluta quaerat omnis facilis perspiciatis incidunt expedita.
-    </p>
+    <span class="githubSpan">
+      <span> If you like Scrollbar.app be sure to </span>
+      <!-- Place this tag where you want the button to render. -->
+      <a
+        class="githubStarBtn"
+        href="https://github.com/henripar/scrollbar"
+        aria-label="Star henripar/scrollbar on GitHub"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+          ></polygon></svg
+      ></a>
+      <span> it on Github! </span>
+    </span>
   </div>
 </template>
 
@@ -192,9 +157,21 @@ export default {
   height: 60vh;
   overflow-y: scroll;
 }
-
-.previewHeader {
+.githubStarBtn {
+  color: grey;
+  display: inline-flex;
+  margin: 0 0.2rem;
+}
+.githubStarBtn:hover {
   color: white;
+}
+.previewHeader {
+  color: #ffffffe3;
+}
+.githubSpan {
+  display: flex;
+  align-items: center;
+  flex-direction: columns;
 }
 
 h1 {
@@ -208,12 +185,10 @@ h3 {
 }
 
 p {
-  margin: 1rem 0;
+  margin: 1rem 1rem 1rem 0;
 }
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
+.last {
+  margin-bottom: 7rem;
 }
 
 @media (min-width: 1024px) {
