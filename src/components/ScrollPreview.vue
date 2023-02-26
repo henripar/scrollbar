@@ -153,6 +153,10 @@ export default {
   border: var(--scrollbar-thumb-border-width) solid
     var(--scrollbar-thumb-border-color);
 }
+
+ul {
+  margin: 1rem 1rem 1rem 0;
+}
 .container {
   height: 60vh;
   overflow-y: scroll;
