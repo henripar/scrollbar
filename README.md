@@ -1,14 +1,15 @@
-# scrollbar
+<h1 align="center">
+  <br>
+  <a href="https://www.gradientos.app"><img src="src/assets/scrollbar_logo3.png" alt="Scrollbar.app" width="140"></a>
+  <br>
+  Scrollbar.app
+  <br>
+</h1>
+<h4 align="center">Simple online tool for designing scrollbars.</h4>
 
-This template should help get you started developing with Vue 3 in Vite.
+## About
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Scrollbar.app is a simple web app which helps developers to design and implement custom scrollbars.
 
 ## Project Setup
 
