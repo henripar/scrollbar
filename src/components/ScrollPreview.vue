@@ -156,6 +156,8 @@ export default {
 .container {
   height: 60vh;
   overflow-y: scroll;
+  scrollbar-color: var(--thumb-color) var(--track-color);
+  scrollbar-width: thin;
 }
 .githubStarBtn {
   color: grey;
