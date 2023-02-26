@@ -9,16 +9,17 @@ export default {
   data() {
     return {
       thumbColor: '#6BAF8D',
-      trackColor: '#fff',
+      trackColor: '#232E33',
       width: 10,
       scrollbarBorderRadius: 10,
       scrollbarThumbBorderWidth: 0,
-      scrollbarThumbBorderColor: '#fff',
+      scrollbarThumbBorderColor: '#232E33',
       borderStyle: 'solid',
       borderColor: 'blue',
       isThumbColorPickerOpen: false,
       isTrackColorPickerOpen: false,
       isThumbBorderColorPickerOpen: false,
+      isCSSTextCopied: false,
     };
   },
   methods: {
@@ -74,6 +75,37 @@ export default {
         this.isTrackColorPickerOpen = false;
       }
     },
+    copyCSSCode() {
+      let code = `
+::-webkit-scrollbar {
+  width: ${this.width}px;
+}
+
+::-webkit-scrollbar-track {
+  background: ${this.trackColor};
+  border-radius: ${this.scrollbarBorderRadius}px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: ${this.thumbColor};
+  border-radius: ${this.scrollbarBorderRadius}px;
+  ${
+    this.scrollbarThumbBorderWidth > 0
+      ? 'border: ' +
+        this.scrollbarThumbBorderWidth +
+        'px ' +
+        'solid ' +
+        this.scrollbarThumbBorderColor +
+        ';'
+      : ''
+  }
+  }`;
+      navigator.clipboard.writeText(code);
+      this.isCSSTextCopied = true;
+      setTimeout(() => {
+        this.isCSSTextCopied = false;
+      }, 1000);
+    },
   },
   components: {
     HelloWorld,
@@ -92,6 +124,7 @@ export default {
   </header>
   <div class="mainContainer">
     <div class="settingsContainer">
+      <h2>Settings</h2>
       <div class="colorPickerContainer">
         <span>Thumb Color</span>
         <span>
@@ -123,7 +156,7 @@ export default {
         </span>
       </div>
       <div class="scrollBarSettingContiner">
-        <label for="width">Scrollbar with</label>
+        <label for="width">Scrollbar Width</label>
         <NumberInput
           @numberUpdated="updateScrollbarWidth"
           min="1"
@@ -141,7 +174,7 @@ export default {
         />
       </div>
       <div class="scrollBarSettingContiner">
-        <label for="width">Scrollbar Border Width</label>
+        <label for="width">Thumb Border Width</label>
         <NumberInput
           @numberUpdated="updateScrollbarThumbBorderWidth"
           min="0"
@@ -150,7 +183,7 @@ export default {
         />
       </div>
       <div class="colorPickerContainer">
-        <span>Scrollbat Thumb Border Color Color</span>
+        <span>Thumb Border Color Color</span>
         <span>
           <span
             @click="openColorPicker('thumbBorder')"
@@ -177,7 +210,7 @@ export default {
       />
     </div>
     <div class="codeOutputContainer">
-      <h1>Code</h1>
+      <h2>Code</h2>
       <code>
         <pre>
 ::-webkit-scrollbar {
@@ -191,14 +224,24 @@ export default {
 
 ::-webkit-scrollbar-thumb {
   background: {{ thumbColor }};
-  border-radius:{{ scrollbarBorderRadius }}px;
-  border: {{ scrollbarThumbBorderWidth }}px solid {{
-            scrollbarThumbBorderColor
-          }};
+  border-radius: {{ scrollbarBorderRadius }}px;
+  {{
+            scrollbarThumbBorderWidth > 0
+              ? 'border: ' +
+                scrollbarThumbBorderWidth +
+                'px ' +
+                'solid ' +
+                scrollbarThumbBorderColor +
+                ';'
+              : null
+          }}
 }</pre
         >
       </code>
-      <button class="btn">Copy code</button>
+      <button @click="copyCSSCode" class="btn">
+        <span v-if="!isCSSTextCopied">Copy code</span
+        ><span v-if="isCSSTextCopied">Copied!</span>
+      </button>
     </div>
   </div>
 </template>
@@ -247,13 +290,62 @@ header {
   padding: 1rem 2rem;
   border: none;
   outline: none;
-  background: linear-gradient(90deg, #6baf8d, #6b8d8d);
+  background-image: linear-gradient(90deg, #6baf8d, #6b8d8d, #6baf8d);
   border-radius: 10px;
+  cursor: pointer;
+  width: 170px;
 }
+
+.btn {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 .logo {
   width: 50px;
 }
 .title {
   margin-left: 1rem;
+}
+
+@media screen and (max-width: 1260px) {
+  .mainContainer {
+    grid-template-areas:
+      'settings preview preview'
+      'settings preview preview'
+      'code preview preview';
+    grid-template-rows: auto;
+  }
+  .settingsContainer {
+    grid-area: settings;
+  }
+  .codeOutputContainer {
+    grid-area: code;
+  }
+  .scrollPreviewContainer {
+    grid-area: preview;
+  }
+}
+@media screen and (max-width: 770px) {
+  .mainContainer {
+    grid-template-areas:
+      'settings settings settings'
+      'preview preview preview'
+      'code code code';
+    grid-template-rows: auto;
+  }
 }
 </style>

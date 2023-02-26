@@ -57,6 +57,40 @@ export default {
       There are multiple CSS pseudo-elements that allows us to custoimize
       elements scrollbar on webkit based browsers.
     </p>
+    <p>Here's a quick reminder of the available pseudo-elements.</p>
+    <ul>
+      <li>::-webkit-scrollbar — the entire scrollbar.</li>
+      <li>::-webkit-scrollbar-thumb — the draggable scrolling handle.</li>
+      <li>
+        ::-webkit-scrollbar-track — the track (progress bar) of the scrollbar
+      </li>
+      <li>
+        ::-webkit-scrollbar-corner — the bottom corner of the scrollbar, where
+        both horizontal and vertical scrollbars meet. This is often the
+        bottom-right corner of the browser window.
+      </li>
+    </ul>
+    <p>
+      You can add these pseudo-elements to any element that has content which is
+      longer than the space reserved for the element.
+    </p>
+    <p>
+      Note: Elements overflow property must be set to 'scroll'. Othervice no
+      scrollbar is displayed.
+    </p>
+    <p>
+      These pseudo-elements are only available on Blink and WebKit based
+      browsers.
+    </p>
+    <p>Supported browsers include:</p>
+    <ul>
+      <li>Chrome</li>
+      <li>Brave</li>
+      <li>Edge</li>
+      <li>Safari</li>
+      <li>Vivaldi</li>
+      <li>Opera</li>
+    </ul>
     <p>
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deleniti
       nobis voluptatem sapiente est! Quis, similique animi provident voluptas
