@@ -67,21 +67,11 @@ export default {
     <p>Here's a quick reminder of the available pseudo-elements:</p>
     <ul>
       <li>
-        <a
-          class="link"
-          href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar"
-        >
-          <code class="highlight">::-webkit-scrollbar</code></a
-        >
+        <code class="highlight">::-webkit-scrollbar</code>
         — the entire scrollbar.
       </li>
       <li>
-        <a
-          class="link"
-          href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar-thumb"
-        >
-          <code class="highlight">::-webkit-scrollbar-thumb</code></a
-        >
+        <code class="highlight">::-webkit-scrollbar-thumb</code>
         — the draggable scrolling handle.
       </li>
       <li>
