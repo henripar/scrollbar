@@ -62,19 +62,37 @@ export default {
     </p>
     <p>
       There are multiple CSS pseudo-elements that allows us to customize
-      elements scrollbar on webkit based browsers.
+      elements scrollbar on WebKit and Blink based browsers.
     </p>
-    <p>Here's a quick reminder of the available pseudo-elements.</p>
+    <p>Here's a quick reminder of the available pseudo-elements:</p>
     <ul>
-      <li>::-webkit-scrollbar — the entire scrollbar.</li>
-      <li>::-webkit-scrollbar-thumb — the draggable scrolling handle.</li>
       <li>
-        ::-webkit-scrollbar-track — the track (progress bar) of the scrollbar
+        <a
+          class="link"
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar"
+        >
+          <code class="highlight">::-webkit-scrollbar</code></a
+        >
+        — the entire scrollbar.
       </li>
       <li>
-        ::-webkit-scrollbar-corner — the bottom corner of the scrollbar, where
-        both horizontal and vertical scrollbars meet. This is often the
-        bottom-right corner of the browser window.
+        <a
+          class="link"
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar-thumb"
+        >
+          <code class="highlight">::-webkit-scrollbar-thumb</code></a
+        >
+        — the draggable scrolling handle.
+      </li>
+      <li>
+        <code class="highlight">::-webkit-scrollbar-track</code>
+        — the track (progress bar) of the scrollbar
+      </li>
+      <li>
+        <code class="highlight">::-webkit-scrollbar-corner</code>
+        — the bottom corner of the scrollbar, where both horizontal and vertical
+        scrollbars meet. This is often the bottom-right corner of the browser
+        window.
       </li>
     </ul>
     <p>
@@ -82,15 +100,19 @@ export default {
       longer than the space reserved for the element.
     </p>
     <p>
-      Note: Elements overflow property must be set to 'scroll'. Othervice no
-      scrollbar is displayed.
+      Note: Elements <code class="highlight">overflow</code> property must be
+      set to <code class="highlight">scroll</code>. Othervice no scrollbar is
+      displayed.
     </p>
     <p>
-      It's worth noting that the selectors mentioned above only work in
-      webkit-based browsers like Google Chrome and Safari. For other browsers,
-      you can use the scrollbar selectors provided by the W3C, such as
-      scrollbar-width, scrollbar-color, scrollbar-track-color,
-      scrollbar-thumb-color, and scrollbar-face-color.
+      It's worth noting that the selectors mentioned above only work in Blink
+      and WebKit based browsers like Google Chrome and Safari. For other
+      browsers, you can use the scrollbar selectors provided by the W3C, such as
+      <code class="highlight">scrollbar-width</code>,
+      <code class="highlight">scrollbar-color</code>,
+      <code class="highlight">scrollbar-track-color</code>,
+      <code class="highlight">scrollbar-thumb-color</code>, and
+      <code class="highlight">scrollbar-face-color</code>.
     </p>
     <p>Supported browsers include:</p>
     <ul>
@@ -157,6 +179,21 @@ export default {
 ul {
   margin: 1rem 1rem 1rem 0;
 }
+
+.highlight {
+  background-color: #232e33;
+  padding: 0.1rem 0.2rem;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.77);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover .highlight {
+  background-color: rgb(107, 175, 141);
+}
 .container {
   height: 60vh;
   overflow-y: scroll;
@@ -180,6 +217,10 @@ ul {
   flex-direction: columns;
 }
 
+li {
+  line-height: 2rem;
+}
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
@@ -192,6 +233,7 @@ h3 {
 
 p {
   margin: 1rem 1rem 1rem 0;
+  line-height: 1.7;
 }
 .last {
   margin-bottom: 7rem;
