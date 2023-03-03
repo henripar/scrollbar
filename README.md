@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://www.gradientos.app"><img src="src/assets/logo.png" alt="Scrollbar.app" width="140"></a>
+  <a href="https://www.scrollbar.app"><img src="src/assets/logo.png" alt="Scrollbar.app" width="140"></a>
   <br>
   Scrollbar.app
   <br>
