@@ -77,17 +77,26 @@ export default {
     },
     copyCSSCode() {
       let code = `
-::-webkit-scrollbar {
-  width: ${this.width}px;
+body {
+  --sb-track-color: ${this.trackColor};
+  --sb-thumb-color: ${this.thumbColor};
+  --sb-size: ${this.width}px;
+
+  scrollbar-color: var(--sb-thumb-color) 
+                   var(--sb-track-color);
 }
 
-::-webkit-scrollbar-track {
-  background: ${this.trackColor};
+body::-webkit-scrollbar {
+  width: var(--sb-size) 
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
   border-radius: ${this.scrollbarBorderRadius}px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: ${this.thumbColor};
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
   border-radius: ${this.scrollbarBorderRadius}px;
   ${
     this.scrollbarThumbBorderWidth > 0
@@ -246,30 +255,40 @@ export default {
     <div class="codeOutputContainer">
       <h2>Code</h2>
       <code>
-        <pre>
-::-webkit-scrollbar {
-  width: {{ width }}px;
+        <pre class="codeOutput">
+body {
+  --sb-track-color: {{ trackColor }};
+  --sb-thumb-color: {{ thumbColor }};
+  --sb-size: {{ width }}px;
+
+  scrollbar-color: var(--sb-thumb-color) 
+                   var(--sb-track-color);
 }
 
-::-webkit-scrollbar-track {
-  background: {{ trackColor }};
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
   border-radius: {{ scrollbarBorderRadius }}px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: {{ thumbColor }};
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
   border-radius: {{ scrollbarBorderRadius }}px;
-  {{
+{{
             scrollbarThumbBorderWidth > 0
-              ? 'border: ' +
+              ? '  border: ' +
                 scrollbarThumbBorderWidth +
                 'px ' +
                 'solid ' +
                 scrollbarThumbBorderColor +
-                ';'
-              : null
-          }}
-}</pre
+                ';' +
+                '\n' +
+                '}'
+              : '}'
+          }}</pre
         >
       </code>
       <button @click="copyCSSCode" class="btn">
@@ -337,6 +356,9 @@ h2 {
   color: #ffffffe3;
 }
 
+.codeOutput {
+  margin-top: 1rem;
+}
 .btn {
   display: block;
   border: none;

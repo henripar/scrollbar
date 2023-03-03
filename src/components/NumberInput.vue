@@ -51,7 +51,9 @@ export default {
 </script>
 <style scoped>
 .numberInputContainer {
-  display: inline;
+  display: inline-flex;
+  justify-content: space-between;
+  min-width: 78px;
 }
 .btn {
   background-color: transparent;
