@@ -8,7 +8,6 @@ export default {
     const userAgent = window.navigator.userAgent;
     let isFirefoxBrowser = false;
     if (userAgent.includes('Firefox')) {
-      console.log(userAgent);
       isFirefoxBrowser = true;
     }
 

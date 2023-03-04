@@ -18,11 +18,9 @@ export default {
   emits: ['numberUpdated'],
   methods: {
     updateValue() {
-      console.log(this.value);
       this.$emit('numberUpdated', this.value);
     },
     plusOne() {
-      console.log(this.value);
       let tempValue = +this.value + 1;
       if (tempValue >= this.min && tempValue <= this.max) {
         this.value = +this.value + 1;
