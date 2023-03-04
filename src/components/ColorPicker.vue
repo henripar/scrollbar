@@ -6,7 +6,6 @@
 
 <script>
 import { Chrome } from '@ckpack/vue-color';
-console.log(Chrome);
 export default {
   name: 'ColorPicker',
   props: ['color'],
@@ -21,14 +20,12 @@ export default {
   },
   methods: {
     updateValue() {
-      console.log(this.colors);
       this.$emit('colorUpdated', this.colors.hex);
     },
   },
   watch: {
     colors: {
       handler() {
-        console.log(this.colors);
         this.$emit(
           'colorUpdated',
           this.colors?.hex?.toLowerCase() ?? this.colors.toLowerCase()
