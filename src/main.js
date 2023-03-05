@@ -12,10 +12,10 @@ const clickOutside = {
         binding.value();
       }
     };
-    document.addEventListener('click', el.clickOutsideEvent);
+    document.addEventListener('mousedown', el.clickOutsideEvent);
   },
   unmounted: (el) => {
-    document.removeEventListener('click', el.clickOutsideEvent);
+    document.removeEventListener('mousedown', el.clickOutsideEvent);
   },
 };
 
