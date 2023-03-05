@@ -59,7 +59,7 @@ export default {
         this.scrollbarThumbBorderWidth = this.scrollbarThumbBorderWidth - 1;
       }
     },
-    openColorPicker(position) {
+    toggleColorPicker(position) {
       if (position === 'thumb') {
         this.isThumbColorPickerOpen = !this.isThumbColorPickerOpen;
         this.isTrackColorPickerOpen = false;
@@ -72,6 +72,15 @@ export default {
         this.isThumbBorderColorPickerOpen = !this.isThumbBorderColorPickerOpen;
         this.isThumbColorPickerOpen = false;
         this.isTrackColorPickerOpen = false;
+      }
+    },
+    closeColorPicker(position) {
+      if (position === 'thumb') {
+        this.isThumbColorPickerOpen = false;
+      } else if (position === 'track') {
+        this.isTrackColorPickerOpen = false;
+      } else if (position === 'thumbBorder') {
+        this.isThumbBorderColorPickerOpen = false;
       }
     },
     copyCSSCode() {
@@ -133,9 +142,9 @@ body::-webkit-scrollbar-thumb {
       <h2>Settings</h2>
       <div class="colorPickerContainer">
         <span>Thumb Color</span>
-        <span>
+        <span v-click-outside="() => closeColorPicker('thumb')">
           <span
-            @click="openColorPicker('thumb')"
+            @click="toggleColorPicker('thumb')"
             :style="{ background: thumbColor }"
             class="colorBox"
           />
@@ -148,9 +157,9 @@ body::-webkit-scrollbar-thumb {
       </div>
       <div class="colorPickerContainer">
         <span>Track Color</span>
-        <span>
+        <span v-click-outside="() => closeColorPicker('track')">
           <span
-            @click="openColorPicker('track')"
+            @click="toggleColorPicker('track')"
             :style="{ background: trackColor }"
             class="colorBox"
           />
@@ -190,9 +199,9 @@ body::-webkit-scrollbar-thumb {
       </div>
       <div v-if="!isFirefox" class="colorPickerContainer">
         <span>Thumb Border Color Color</span>
-        <span>
+        <span v-click-outside="() => closeColorPicker('thumbBorder')">
           <span
-            @click="openColorPicker('thumbBorder')"
+            @click="toggleColorPicker('thumbBorder')"
             :style="{ background: scrollbarThumbBorderColor }"
             class="colorBox"
           />
