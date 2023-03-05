@@ -52,6 +52,7 @@ export default {
   display: inline-flex;
   justify-content: space-between;
   min-width: 78px;
+  align-items: center;
 }
 .btn {
   background-color: transparent;
