@@ -1,31 +1,37 @@
 <script>
-import ScrollPreview from './components/ScrollPreview.vue';
-import ColorPicker from './components/ColorPicker.vue';
-import NumberInput from './components/NumberInput.vue';
+import ScrollPreview from "./components/ScrollPreview.vue";
+import ColorPicker from "./components/ColorPicker.vue";
+import NumberInput from "./components/NumberInput.vue";
+import ToggleTheme from "./components/ToggleTheme.vue";
 
 export default {
   data() {
     const userAgent = window.navigator.userAgent;
     let isFirefoxBrowser = false;
-    if (userAgent.includes('Firefox')) {
+    if (userAgent.includes("Firefox")) {
       isFirefoxBrowser = true;
     }
 
     return {
-      thumbColor: '#6BAF8D',
-      trackColor: '#232E33',
+      thumbColor: "#6BAF8D",
+      trackColor: "#232E33",
       width: 10,
       scrollbarBorderRadius: 10,
       scrollbarThumbBorderWidth: 0,
-      scrollbarThumbBorderColor: '#232E33',
+      scrollbarThumbBorderColor: "#232E33",
       isThumbColorPickerOpen: false,
       isTrackColorPickerOpen: false,
       isThumbBorderColorPickerOpen: false,
       isCSSTextCopied: false,
       isFirefox: isFirefoxBrowser,
+      theme: "dark",
     };
   },
   methods: {
+    updateTheme(e) {
+      this.theme = e.target.checked ? "light" : "dark";
+      document.body.classList.toggle("light-mode");
+    },
     updateThumbColor(e) {
       this.thumbColor = e;
     },
@@ -36,50 +42,50 @@ export default {
       this.scrollbarThumbBorderColor = e;
     },
     updateScrollbarWidth(e) {
-      if (e == 'add') {
+      if (e == "add") {
         this.width = this.width + 1;
       }
-      if (e == 'reduce') {
+      if (e == "reduce") {
         this.width = this.width - 1;
       }
     },
     updateScrollbarBorderRadius(e) {
-      if (e == 'add') {
+      if (e == "add") {
         this.scrollbarBorderRadius = this.scrollbarBorderRadius + 1;
       }
-      if (e == 'reduce') {
+      if (e == "reduce") {
         this.scrollbarBorderRadius = this.scrollbarBorderRadius - 1;
       }
     },
     updateScrollbarThumbBorderWidth(e) {
-      if (e == 'add') {
+      if (e == "add") {
         this.scrollbarThumbBorderWidth = this.scrollbarThumbBorderWidth + 1;
       }
-      if (e == 'reduce') {
+      if (e == "reduce") {
         this.scrollbarThumbBorderWidth = this.scrollbarThumbBorderWidth - 1;
       }
     },
     toggleColorPicker(position) {
-      if (position === 'thumb') {
+      if (position === "thumb") {
         this.isThumbColorPickerOpen = !this.isThumbColorPickerOpen;
         this.isTrackColorPickerOpen = false;
         this.isThumbBorderColorPickerOpen = false;
-      } else if (position === 'track') {
+      } else if (position === "track") {
         this.isTrackColorPickerOpen = !this.isTrackColorPickerOpen;
         this.isThumbColorPickerOpen = false;
         this.isThumbBorderColorPickerOpen = false;
-      } else if (position === 'thumbBorder') {
+      } else if (position === "thumbBorder") {
         this.isThumbBorderColorPickerOpen = !this.isThumbBorderColorPickerOpen;
         this.isThumbColorPickerOpen = false;
         this.isTrackColorPickerOpen = false;
       }
     },
     closeColorPicker(position) {
-      if (position === 'thumb') {
+      if (position === "thumb") {
         this.isThumbColorPickerOpen = false;
-      } else if (position === 'track') {
+      } else if (position === "track") {
         this.isTrackColorPickerOpen = false;
-      } else if (position === 'thumbBorder') {
+      } else if (position === "thumbBorder") {
         this.isThumbBorderColorPickerOpen = false;
       }
     },
@@ -108,13 +114,13 @@ body::-webkit-scrollbar-thumb {
   border-radius: ${this.scrollbarBorderRadius}px;
   ${
     this.scrollbarThumbBorderWidth > 0
-      ? 'border: ' +
+      ? "border: " +
         this.scrollbarThumbBorderWidth +
-        'px ' +
-        'solid ' +
+        "px " +
+        "solid " +
         this.scrollbarThumbBorderColor +
-        ';'
-      : ''
+        ";"
+      : ""
   }
   }`;
       navigator.clipboard.writeText(code);
@@ -128,18 +134,24 @@ body::-webkit-scrollbar-thumb {
     ScrollPreview,
     ColorPicker,
     NumberInput,
+    ToggleTheme,
   },
 };
 </script>
 
 <template>
+  <ToggleTheme
+    @toggleLightMode="updateTheme"
+    :theme="theme === 'light'"
+    class="codeOutputContainer"
+  />
   <header>
     <img class="logo" src="./assets/logo.png" alt="logo" />
     <h1 class="title">Scrollbar.app</h1>
   </header>
   <div class="mainContainer">
     <div class="settingsContainer">
-      <h2>Settings</h2>
+      <h2 :class="theme">Settings</h2>
       <div class="colorPickerContainer">
         <span>Thumb Color</span>
         <span v-click-outside="() => closeColorPicker('thumb')">
@@ -213,9 +225,18 @@ body::-webkit-scrollbar-thumb {
         </span>
       </div>
       <div class="githubBtnContainer">
-        <a href="https://github.com/henripar/scrollbar" class="githubBtn"
-          ><img class="githubLogo" src="./assets/github-mark-white.png" /> View
-          on Github</a
+        <a
+          :class="theme"
+          href="https://github.com/henripar/scrollbar"
+          class="githubBtn"
+        >
+          <img
+            v-if="theme === 'light'"
+            class="githubLogo"
+            src="./assets/github-mark-black.png"
+          />
+          <img v-else class="githubLogo" src="./assets/github-mark-white.png" />
+          View on Github</a
         >
       </div>
       <div class="firefoxMsgContainer" v-if="isFirefox">
@@ -258,10 +279,11 @@ body::-webkit-scrollbar-thumb {
         :scrollbarBorderRadius="this.scrollbarBorderRadius"
         :scrollbarThumbBorderWidth="this.scrollbarThumbBorderWidth"
         :scrollbarThumbBorderColor="this.scrollbarThumbBorderColor"
+        :theme="theme"
       />
     </div>
     <div class="codeOutputContainer">
-      <h2>Code</h2>
+      <h2 :class="theme">Code</h2>
       <code>
         <pre class="codeOutput">
 body {
@@ -287,15 +309,15 @@ body::-webkit-scrollbar-thumb {
   border-radius: {{ scrollbarBorderRadius }}px;
 {{
             scrollbarThumbBorderWidth > 0
-              ? '  border: ' +
+              ? "  border: " +
                 scrollbarThumbBorderWidth +
-                'px ' +
-                'solid ' +
+                "px " +
+                "solid " +
                 scrollbarThumbBorderColor +
-                ';' +
-                '\n' +
-                '}'
-              : '}'
+                ";" +
+                "\n" +
+                "}"
+              : "}"
           }}</pre
         >
       </code>
@@ -363,6 +385,9 @@ header {
 h2 {
   color: #ffffffe3;
 }
+h2.light {
+  color: #2c3e50;
+}
 
 .codeOutput {
   margin-top: 1rem;
@@ -420,6 +445,9 @@ h2 {
   color: rgba(235, 235, 235, 0.64);
   text-decoration: none;
 }
+.githubBtn.light {
+  color: #2c3e50;
+}
 
 .highlight {
   background-color: #232e33;
@@ -438,9 +466,9 @@ h2 {
 @media screen and (max-width: 1260px) {
   .mainContainer {
     grid-template-areas:
-      'settings preview preview'
-      'settings preview preview'
-      'code preview preview';
+      "settings preview preview"
+      "settings preview preview"
+      "code preview preview";
     grid-template-rows: auto;
   }
   .settingsContainer {
@@ -456,9 +484,9 @@ h2 {
 @media screen and (max-width: 770px) {
   .mainContainer {
     grid-template-areas:
-      'settings settings settings'
-      'preview preview preview'
-      'code code code';
+      "settings settings settings"
+      "preview preview preview"
+      "code code code";
     grid-template-rows: auto;
   }
 }

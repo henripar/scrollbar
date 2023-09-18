@@ -24,6 +24,7 @@
 /* semantic color variables for this project */
 :root {
   --color-background: var(--vt-c-black);
+  --color-background-light: var(--vt-c-white);
   --color-background-soft: var(--vt-c-black-soft);
   --color-background-mute: var(--vt-c-black-mute);
 
@@ -32,6 +33,7 @@
 
   --color-heading: var(--vt-c-text-dark-1);
   --color-text: var(--vt-c-text-dark-2);
+  --color-text-light: var(--vt-c-text-light-2);
 
   --section-gap: 160px;
 }
@@ -57,6 +59,11 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.light-mode {
+  color: var(--color-text-light);
+  background: var(--color-background-light);
 }
 
 .vc-chrome-alpha-wrap {

@@ -7,6 +7,7 @@ export default {
     'scrollbarBorderRadius',
     'scrollbarThumbBorderWidth',
     'scrollbarThumbBorderColor',
+    'theme'
   ],
   data() {
     // return {
@@ -52,7 +53,7 @@ export default {
 
 <template>
   <div :style="createCSSVariables()" class="container">
-    <h2 class="previewHeader">CSS Scrollbar Selectors</h2>
+    <h2 :class="[theme, 'previewHeader']">CSS Scrollbar Selectors</h2>
     <p>
       Scrollbars are an essential component of any website that contains lengthy
       content. They provide users with a way to navigate through the content
@@ -123,7 +124,7 @@ export default {
       <span> If you like Scrollbar.app be sure to </span>
       <!-- Place this tag where you want the button to render. -->
       <a
-        class="githubStarBtn"
+        :class="[theme,'githubStarBtn']"
         href="https://github.com/henripar/scrollbar"
         aria-label="Star henripar/scrollbar on GitHub"
         ><svg
@@ -198,8 +199,15 @@ ul {
 .githubStarBtn:hover {
   color: white;
 }
+.githubStarBtn.light:hover {
+  color: #2c3e50;
+}
+
 .previewHeader {
   color: #ffffffe3;
+}
+.previewHeader.light{
+  color: #2c3e50;
 }
 .githubSpan {
   display: flex;
