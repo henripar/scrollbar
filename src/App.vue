@@ -1,30 +1,30 @@
 <script>
-import ScrollPreview from "./components/ScrollPreview.vue";
-import ColorPicker from "./components/ColorPicker.vue";
-import NumberInput from "./components/NumberInput.vue";
-import ToggleTheme from "./components/ToggleTheme.vue";
+import ScrollPreview from './components/ScrollPreview.vue';
+import ColorPicker from './components/ColorPicker.vue';
+import NumberInput from './components/NumberInput.vue';
+import ToggleTheme from './components/ToggleTheme.vue';
 
 export default {
   data() {
     const userAgent = window.navigator.userAgent;
     let isFirefoxBrowser = false;
-    if (userAgent.includes("Firefox")) {
+    if (userAgent.includes('Firefox')) {
       isFirefoxBrowser = true;
     }
 
     return {
-      thumbColor: "#6BAF8D",
-      trackColor: "#232E33",
+      thumbColor: '#6BAF8D',
+      trackColor: '#232E33',
       width: 10,
       scrollbarBorderRadius: 10,
       scrollbarThumbBorderWidth: 0,
-      scrollbarThumbBorderColor: "#232E33",
+      scrollbarThumbBorderColor: '#232E33',
       isThumbColorPickerOpen: false,
       isTrackColorPickerOpen: false,
       isThumbBorderColorPickerOpen: false,
       isCSSTextCopied: false,
       isFirefox: isFirefoxBrowser,
-      theme: "dark",
+      theme: 'dark',
     };
   },
   methods: {
@@ -42,50 +42,50 @@ export default {
       this.scrollbarThumbBorderColor = e;
     },
     updateScrollbarWidth(e) {
-      if (e == "add") {
+      if (e == 'add') {
         this.width = this.width + 1;
       }
-      if (e == "reduce") {
+      if (e == 'reduce') {
         this.width = this.width - 1;
       }
     },
     updateScrollbarBorderRadius(e) {
-      if (e == "add") {
+      if (e == 'add') {
         this.scrollbarBorderRadius = this.scrollbarBorderRadius + 1;
       }
-      if (e == "reduce") {
+      if (e == 'reduce') {
         this.scrollbarBorderRadius = this.scrollbarBorderRadius - 1;
       }
     },
     updateScrollbarThumbBorderWidth(e) {
-      if (e == "add") {
+      if (e == 'add') {
         this.scrollbarThumbBorderWidth = this.scrollbarThumbBorderWidth + 1;
       }
-      if (e == "reduce") {
+      if (e == 'reduce') {
         this.scrollbarThumbBorderWidth = this.scrollbarThumbBorderWidth - 1;
       }
     },
     toggleColorPicker(position) {
-      if (position === "thumb") {
+      if (position === 'thumb') {
         this.isThumbColorPickerOpen = !this.isThumbColorPickerOpen;
         this.isTrackColorPickerOpen = false;
         this.isThumbBorderColorPickerOpen = false;
-      } else if (position === "track") {
+      } else if (position === 'track') {
         this.isTrackColorPickerOpen = !this.isTrackColorPickerOpen;
         this.isThumbColorPickerOpen = false;
         this.isThumbBorderColorPickerOpen = false;
-      } else if (position === "thumbBorder") {
+      } else if (position === 'thumbBorder') {
         this.isThumbBorderColorPickerOpen = !this.isThumbBorderColorPickerOpen;
         this.isThumbColorPickerOpen = false;
         this.isTrackColorPickerOpen = false;
       }
     },
     closeColorPicker(position) {
-      if (position === "thumb") {
+      if (position === 'thumb') {
         this.isThumbColorPickerOpen = false;
-      } else if (position === "track") {
+      } else if (position === 'track') {
         this.isTrackColorPickerOpen = false;
-      } else if (position === "thumbBorder") {
+      } else if (position === 'thumbBorder') {
         this.isThumbBorderColorPickerOpen = false;
       }
     },
@@ -114,13 +114,13 @@ body::-webkit-scrollbar-thumb {
   border-radius: ${this.scrollbarBorderRadius}px;
   ${
     this.scrollbarThumbBorderWidth > 0
-      ? "border: " +
+      ? 'border: ' +
         this.scrollbarThumbBorderWidth +
-        "px " +
-        "solid " +
+        'px ' +
+        'solid ' +
         this.scrollbarThumbBorderColor +
-        ";"
-      : ""
+        ';'
+      : ''
   }
   }`;
       navigator.clipboard.writeText(code);
@@ -189,6 +189,7 @@ body::-webkit-scrollbar-thumb {
           min="1"
           max="50"
           :number="width"
+          :theme="theme"
         />
       </div>
       <div v-if="!isFirefox" class="scrollBarSettingContiner">
@@ -198,6 +199,7 @@ body::-webkit-scrollbar-thumb {
           min="1"
           max="50"
           :number="scrollbarBorderRadius"
+          :theme="theme"
         />
       </div>
       <div v-if="!isFirefox" class="scrollBarSettingContiner">
@@ -207,6 +209,7 @@ body::-webkit-scrollbar-thumb {
           min="0"
           max="20"
           :number="scrollbarThumbBorderWidth"
+          :theme="theme"
         />
       </div>
       <div v-if="!isFirefox" class="colorPickerContainer">
@@ -309,15 +312,15 @@ body::-webkit-scrollbar-thumb {
   border-radius: {{ scrollbarBorderRadius }}px;
 {{
             scrollbarThumbBorderWidth > 0
-              ? "  border: " +
+              ? '  border: ' +
                 scrollbarThumbBorderWidth +
-                "px " +
-                "solid " +
+                'px ' +
+                'solid ' +
                 scrollbarThumbBorderColor +
-                ";" +
-                "\n" +
-                "}"
-              : "}"
+                ';' +
+                '\n' +
+                '}'
+              : '}'
           }}</pre
         >
       </code>
@@ -466,9 +469,9 @@ h2.light {
 @media screen and (max-width: 1260px) {
   .mainContainer {
     grid-template-areas:
-      "settings preview preview"
-      "settings preview preview"
-      "code preview preview";
+      'settings preview preview'
+      'settings preview preview'
+      'code preview preview';
     grid-template-rows: auto;
   }
   .settingsContainer {
@@ -484,9 +487,9 @@ h2.light {
 @media screen and (max-width: 770px) {
   .mainContainer {
     grid-template-areas:
-      "settings settings settings"
-      "preview preview preview"
-      "code code code";
+      'settings settings settings'
+      'preview preview preview'
+      'code code code';
     grid-template-rows: auto;
   }
 }
