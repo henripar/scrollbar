@@ -213,7 +213,7 @@ ul {
   color: #ffffffe3;
 }
 .previewHeader.light {
-  color: #2c3e50;
+  color: #000000;
 }
 .githubSpan {
   display: flex;

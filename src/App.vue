@@ -396,14 +396,14 @@ h2 {
   color: #ffffffe3;
 }
 h2.light {
-  color: #2c3e50;
+  color: #000000;
 }
 
 h3 {
   color: #ffffffe3;
 }
 h3.light {
-  color: #2c3e50;
+  color: #000000;
 }
 
 .codeOutput {
@@ -463,7 +463,7 @@ h3.light {
   text-decoration: none;
 }
 .githubBtn.light {
-  color: #2c3e50;
+  color: #000000;
 }
 
 .highlight {
