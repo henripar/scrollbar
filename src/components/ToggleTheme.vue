@@ -1,20 +1,59 @@
 <template>
   <div class="toggle-container">
-    <label class="switch">
-      <input @change="toggleLightMode" :checked='theme' type="checkbox" />
-      <span class="slider"></span>
-    </label>
+    <div v-if="theme" @click="toggleLightMode" class="theme-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-sun-medium"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 3v1" />
+        <path d="M12 20v1" />
+        <path d="M3 12h1" />
+        <path d="M20 12h1" />
+        <path d="m18.364 5.636-.707.707" />
+        <path d="m6.343 17.657-.707.707" />
+        <path d="m5.636 5.636.707.707" />
+        <path d="m17.657 17.657.707.707" />
+      </svg>
+      <span>Light</span>
+    </div>
+    <div v-if="!theme" @click="toggleLightMode" class="theme-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-moon"
+      >
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </svg>
+      <span>Dark</span>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ToggleTheme",
-  emits: ["toggleLightMode"],
-  props:['theme'],
+  name: 'ToggleTheme',
+  emits: ['toggleLightMode'],
+  props: ['theme'],
   methods: {
     toggleLightMode(e) {
-      this.$emit("toggleLightMode", e);
+      console.log(e);
+      this.$emit('toggleLightMode', e);
     },
   },
 };
@@ -23,82 +62,29 @@ export default {
 <style scoped>
 .toggle-container {
   display: flex;
-  justify-content: end;
+  justify-content: left;
+  align-items: center;
   padding: 10px 10px 0 0;
-}
-
-.switch {
-  font-size: 17px;
-  position: relative;
-  display: inline-block;
-  width: 3.5em;
-  height: 2em;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #223243;
-  transition: 0.4s;
-  border-radius: 30px;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 1.4em;
-  width: 1.4em;
-  border-radius: 20px;
-  left: 0.3em;
-  bottom: 0.3em;
-  background-color: #223243;
-  box-shadow: inset 2px -2px 0 1.8px #fff;
-  transition: 0.4s;
-  animation: anima1 0.3s linear;
+.theme-btn:hover {
+  background-color: var(--color-highlight);
+  color: var(--color-text-strong);
+}
+.theme-btn span {
+  margin-left: 0.5rem;
 }
 
-@keyframes anima1 {
-  0% {
-    transform: translateX(1.5em);
-  }
-
-  80% {
-    transform: translateX(-0.3em);
-  }
-
-  100% {
-    transform: translateX(0em);
-  }
+.theme-btn span::selection {
+  background-color: transparent;
 }
 
-.switch input:checked + .slider:before {
-  background-color: yellow;
-  box-shadow: none;
-  transform: translateX(1.5em);
-  animation: anima 0.3s linear;
-}
-
-@keyframes anima {
-  0% {
-    transform: translateX(0px);
-  }
-
-  80% {
-    transform: translateX(1.6em);
-  }
-
-  100% {
-    transform: translateX(1.4em);
-  }
+.theme-btn {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  border-radius: 7px;
 }
 </style>

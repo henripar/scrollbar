@@ -1,8 +1,9 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --vt-c-white: #ffffff;
+  --vt-c-white: #fbfbfb;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
+  --vt-c-preview-background: #fff;
 
   --vt-c-black: #0d1117;
   --vt-c-black-soft: #222222;
@@ -16,7 +17,7 @@
   --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
 
   --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
+  --vt-c-text-light-2: rgba(60, 60, 60, 0.91);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
@@ -34,6 +35,14 @@
   --color-heading: var(--vt-c-text-dark-1);
   --color-text: var(--vt-c-text-dark-2);
   --color-text-light: var(--vt-c-text-light-2);
+
+  --color-preview-background: var(--vt-c-black);
+  --color-preview-border: transparent;
+
+  --color-highlight-dark: var(--vt-c-black);
+  --color-highlight: #232e33;
+  --color-highlight-light: #ececec;
+  --color-text-strong: var(--vt-c-white);
 
   --section-gap: 160px;
 }
@@ -64,6 +73,15 @@ body {
 body.light-mode {
   color: var(--color-text-light);
   background: var(--color-background-light);
+  --color-preview-background: var(--vt-c-preview-background);
+  --color-preview-border: rgba(0, 0, 0, 0.095);
+  --color-highlight: var(--color-highlight-light);
+  --color-text-strong: #000;
+}
+
+body.light-mode .highlight {
+  background: var(--color-highlight);
+  color: #0d1117;
 }
 
 .vc-chrome-alpha-wrap {

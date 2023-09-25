@@ -7,7 +7,7 @@ export default {
     'scrollbarBorderRadius',
     'scrollbarThumbBorderWidth',
     'scrollbarThumbBorderColor',
-    'theme'
+    'theme',
   ],
   data() {
     // return {
@@ -124,7 +124,7 @@ export default {
       <span> If you like Scrollbar.app be sure to </span>
       <!-- Place this tag where you want the button to render. -->
       <a
-        :class="[theme,'githubStarBtn']"
+        :class="[theme, 'githubStarBtn']"
         href="https://github.com/henripar/scrollbar"
         aria-label="Star henripar/scrollbar on GitHub"
         ><svg
@@ -176,6 +176,7 @@ ul {
   padding: 0.1rem 0.2rem;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.77);
+  transition: color 0.2s, background-color 0.5s;
 }
 
 .link {
@@ -190,6 +191,11 @@ ul {
   overflow-y: scroll;
   scrollbar-color: var(--thumb-color) var(--track-color);
   scrollbar-width: thin;
+  padding: 1rem;
+  background-color: var(--color-preview-background);
+  transition: color 0.2s, background-color 0.5s;
+  border: 1px solid var(--color-preview-border);
+  border-radius: 6px;
 }
 .githubStarBtn {
   color: grey;
@@ -206,7 +212,7 @@ ul {
 .previewHeader {
   color: #ffffffe3;
 }
-.previewHeader.light{
+.previewHeader.light {
   color: #2c3e50;
 }
 .githubSpan {
