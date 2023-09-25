@@ -52,7 +52,6 @@ export default {
   props: ['theme'],
   methods: {
     toggleLightMode(e) {
-      console.log(e);
       this.$emit('toggleLightMode', e);
     },
   },
