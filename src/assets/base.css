@@ -77,6 +77,7 @@ body.light-mode {
   --color-preview-border: rgba(0, 0, 0, 0.095);
   --color-highlight: var(--color-highlight-light);
   --color-text-strong: #000;
+  --color-text: var(--vt-c-text-light-2);
 }
 
 body.light-mode .highlight {

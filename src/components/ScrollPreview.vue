@@ -120,13 +120,14 @@ export default {
       of their websites. By using these selectors, you can create a more
       cohesive and aesthetically pleasing user experience for your visitors.
     </p>
-    <span class="githubSpan">
+    <a
+      href="https://github.com/henripar/scrollbar"
+      aria-label="Star henripar/scrollbar on GitHub"
+      class="githubSpan highlight"
+    >
       <span> If you like Scrollbar.app be sure to </span>
       <!-- Place this tag where you want the button to render. -->
-      <a
-        :class="[theme, 'githubStarBtn']"
-        href="https://github.com/henripar/scrollbar"
-        aria-label="Star henripar/scrollbar on GitHub"
+      <span :class="[theme, 'githubStarBtn']"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -141,9 +142,9 @@ export default {
           <polygon
             points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
           ></polygon></svg
-      ></a>
+      ></span>
       <span> it on Github! </span>
-    </span>
+    </a>
   </div>
 </template>
 
@@ -219,6 +220,20 @@ ul {
   display: flex;
   align-items: center;
   flex-direction: columns;
+  width: fit-content;
+  border-radius: 5px;
+  margin: auto;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-bottom: 3rem;
+}
+
+svg {
+  stroke: var(--color-text);
+}
+.githubSpan:hover svg {
+  stroke: #6caf8c;
+  fill: #6caf8c;
 }
 
 li {
