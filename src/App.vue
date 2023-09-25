@@ -29,8 +29,8 @@ export default {
   },
   methods: {
     updateTheme(e) {
-      this.theme = e.target.checked ? "light" : "dark";
-      document.body.classList.toggle("light-mode");
+      this.theme = this.theme == 'dark' ? 'light' : 'dark';
+      document.body.classList.toggle('light-mode');
     },
     updateThumbColor(e) {
       this.thumbColor = e;
@@ -140,11 +140,6 @@ body::-webkit-scrollbar-thumb {
 </script>
 
 <template>
-  <ToggleTheme
-    @toggleLightMode="updateTheme"
-    :theme="theme === 'light'"
-    class="codeOutputContainer"
-  />
   <header>
     <img class="logo" src="./assets/logo.png" alt="logo" />
     <h1 class="title">Scrollbar.app</h1>
@@ -227,6 +222,12 @@ body::-webkit-scrollbar-thumb {
           />
         </span>
       </div>
+      <h3 :class="theme">Theme</h3>
+      <ToggleTheme
+        @toggleLightMode="updateTheme"
+        :theme="theme === 'light'"
+        :class="toggelBtn"
+      />
       <div class="githubBtnContainer">
         <a
           :class="theme"
@@ -378,6 +379,12 @@ body::-webkit-scrollbar-thumb {
   margin: 1rem 0;
 }
 
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 header {
   display: flex;
   flex-direction: row;
@@ -389,7 +396,14 @@ h2 {
   color: #ffffffe3;
 }
 h2.light {
-  color: #2c3e50;
+  color: #000000;
+}
+
+h3 {
+  color: #ffffffe3;
+}
+h3.light {
+  color: #000000;
 }
 
 .codeOutput {
@@ -449,11 +463,11 @@ h2.light {
   text-decoration: none;
 }
 .githubBtn.light {
-  color: #2c3e50;
+  color: #000000;
 }
 
 .highlight {
-  background-color: #232e33;
+  background-color: var(--color-highlight-dark);
   padding: 0.1rem 0.2rem;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.77);

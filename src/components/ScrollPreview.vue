@@ -7,7 +7,7 @@ export default {
     'scrollbarBorderRadius',
     'scrollbarThumbBorderWidth',
     'scrollbarThumbBorderColor',
-    'theme'
+    'theme',
   ],
   data() {
     // return {
@@ -120,13 +120,14 @@ export default {
       of their websites. By using these selectors, you can create a more
       cohesive and aesthetically pleasing user experience for your visitors.
     </p>
-    <span class="githubSpan">
+    <a
+      href="https://github.com/henripar/scrollbar"
+      aria-label="Star henripar/scrollbar on GitHub"
+      class="githubSpan highlight"
+    >
       <span> If you like Scrollbar.app be sure to </span>
       <!-- Place this tag where you want the button to render. -->
-      <a
-        :class="[theme,'githubStarBtn']"
-        href="https://github.com/henripar/scrollbar"
-        aria-label="Star henripar/scrollbar on GitHub"
+      <span :class="[theme, 'githubStarBtn']"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -141,9 +142,9 @@ export default {
           <polygon
             points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
           ></polygon></svg
-      ></a>
+      ></span>
       <span> it on Github! </span>
-    </span>
+    </a>
   </div>
 </template>
 
@@ -176,6 +177,7 @@ ul {
   padding: 0.1rem 0.2rem;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.77);
+  transition: color 0.2s, background-color 0.5s;
 }
 
 .link {
@@ -190,6 +192,11 @@ ul {
   overflow-y: scroll;
   scrollbar-color: var(--thumb-color) var(--track-color);
   scrollbar-width: thin;
+  padding: 1rem;
+  background-color: var(--color-preview-background);
+  transition: color 0.2s, background-color 0.5s;
+  border: 1px solid var(--color-preview-border);
+  border-radius: 6px;
 }
 .githubStarBtn {
   color: grey;
@@ -206,13 +213,27 @@ ul {
 .previewHeader {
   color: #ffffffe3;
 }
-.previewHeader.light{
-  color: #2c3e50;
+.previewHeader.light {
+  color: #000000;
 }
 .githubSpan {
   display: flex;
   align-items: center;
   flex-direction: columns;
+  width: fit-content;
+  border-radius: 5px;
+  margin: auto;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-bottom: 3rem;
+}
+
+svg {
+  stroke: var(--color-text);
+}
+.githubSpan:hover svg {
+  stroke: #6caf8c;
+  fill: #6caf8c;
 }
 
 li {
