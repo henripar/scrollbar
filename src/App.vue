@@ -2,6 +2,7 @@
 import ScrollPreview from './components/ScrollPreview.vue';
 import ColorPicker from './components/ColorPicker.vue';
 import NumberInput from './components/NumberInput.vue';
+import ToggleTheme from './components/ToggleTheme.vue';
 
 export default {
   data() {
@@ -23,9 +24,14 @@ export default {
       isThumbBorderColorPickerOpen: false,
       isCSSTextCopied: false,
       isFirefox: isFirefoxBrowser,
+      theme: 'dark',
     };
   },
   methods: {
+    updateTheme(e) {
+      this.theme = e.target.checked ? "light" : "dark";
+      document.body.classList.toggle("light-mode");
+    },
     updateThumbColor(e) {
       this.thumbColor = e;
     },
@@ -128,18 +134,24 @@ body::-webkit-scrollbar-thumb {
     ScrollPreview,
     ColorPicker,
     NumberInput,
+    ToggleTheme,
   },
 };
 </script>
 
 <template>
+  <ToggleTheme
+    @toggleLightMode="updateTheme"
+    :theme="theme === 'light'"
+    class="codeOutputContainer"
+  />
   <header>
     <img class="logo" src="./assets/logo.png" alt="logo" />
     <h1 class="title">Scrollbar.app</h1>
   </header>
   <div class="mainContainer">
     <div class="settingsContainer">
-      <h2>Settings</h2>
+      <h2 :class="theme">Settings</h2>
       <div class="colorPickerContainer">
         <span>Thumb Color</span>
         <span v-click-outside="() => closeColorPicker('thumb')">
@@ -177,6 +189,7 @@ body::-webkit-scrollbar-thumb {
           min="1"
           max="50"
           :number="width"
+          :theme="theme"
         />
       </div>
       <div v-if="!isFirefox" class="scrollBarSettingContiner">
@@ -186,6 +199,7 @@ body::-webkit-scrollbar-thumb {
           min="1"
           max="50"
           :number="scrollbarBorderRadius"
+          :theme="theme"
         />
       </div>
       <div v-if="!isFirefox" class="scrollBarSettingContiner">
@@ -195,6 +209,7 @@ body::-webkit-scrollbar-thumb {
           min="0"
           max="20"
           :number="scrollbarThumbBorderWidth"
+          :theme="theme"
         />
       </div>
       <div v-if="!isFirefox" class="colorPickerContainer">
@@ -213,9 +228,18 @@ body::-webkit-scrollbar-thumb {
         </span>
       </div>
       <div class="githubBtnContainer">
-        <a href="https://github.com/henripar/scrollbar" class="githubBtn"
-          ><img class="githubLogo" src="./assets/github-mark-white.png" /> View
-          on Github</a
+        <a
+          :class="theme"
+          href="https://github.com/henripar/scrollbar"
+          class="githubBtn"
+        >
+          <img
+            v-if="theme === 'light'"
+            class="githubLogo"
+            src="./assets/github-mark-black.png"
+          />
+          <img v-else class="githubLogo" src="./assets/github-mark-white.png" />
+          View on Github</a
         >
       </div>
       <div class="firefoxMsgContainer" v-if="isFirefox">
@@ -258,10 +282,11 @@ body::-webkit-scrollbar-thumb {
         :scrollbarBorderRadius="this.scrollbarBorderRadius"
         :scrollbarThumbBorderWidth="this.scrollbarThumbBorderWidth"
         :scrollbarThumbBorderColor="this.scrollbarThumbBorderColor"
+        :theme="theme"
       />
     </div>
     <div class="codeOutputContainer">
-      <h2>Code</h2>
+      <h2 :class="theme">Code</h2>
       <code>
         <pre class="codeOutput">
 body {
@@ -363,6 +388,9 @@ header {
 h2 {
   color: #ffffffe3;
 }
+h2.light {
+  color: #2c3e50;
+}
 
 .codeOutput {
   margin-top: 1rem;
@@ -419,6 +447,9 @@ h2 {
   width: fit-content;
   color: rgba(235, 235, 235, 0.64);
   text-decoration: none;
+}
+.githubBtn.light {
+  color: #2c3e50;
 }
 
 .highlight {

@@ -1,15 +1,15 @@
 <template>
   <div class="numberInputContainer">
-    <button class="btn" @click="minusOne">-</button>
+    <button :class="[theme, 'btn']" @click="minusOne">-</button>
     {{ this.value }}px
-    <button class="btn" @click="plusOne">+</button>
+    <button :class="[theme, 'btn']" @click="plusOne">+</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'NumberInput',
-  props: ['number', 'min', 'max'],
+  props: ['number', 'min', 'max', 'theme'],
   data() {
     return {
       value: this.number,
@@ -60,5 +60,8 @@ export default {
   outline: none;
   color: white;
   cursor: pointer;
+}
+.btn.light{
+  color: #2c3e50;
 }
 </style>
