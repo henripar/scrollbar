@@ -36,11 +36,11 @@
   --color-text: var(--vt-c-text-dark-2);
   --color-text-light: var(--vt-c-text-light-2);
 
-  --color-preview-background: var(--vt-c-black);
-  --color-preview-border: transparent;
+  --color-preview-background: #232e3363;
+  --color-preview-border: #ffffff0d;
 
   --color-highlight-dark: var(--vt-c-black);
-  --color-highlight: #232e33;
+  --color-highlight: #232e3363;
   --color-highlight-light: #ececec;
   --color-text-strong: var(--vt-c-white);
 
