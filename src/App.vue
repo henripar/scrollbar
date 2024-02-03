@@ -323,9 +323,11 @@ body::-webkit-scrollbar-thumb {
               : '}'
           }}
 
-@supports not selector(::-webkit-scrollbar) body {
-  scrollbar-color: var(--sb-thumb-color)
-                   var(--sb-track-color);
+@supports not selector(::-webkit-scrollbar) {
+  body {
+      scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
 }</pre
         >
       </code>
