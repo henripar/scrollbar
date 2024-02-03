@@ -15,8 +15,8 @@ export default {
     return {
       thumbColor: '#6BAF8D',
       trackColor: '#232E33',
-      width: 10,
-      scrollbarBorderRadius: 10,
+      width: 14,
+      scrollbarBorderRadius: 3,
       scrollbarThumbBorderWidth: 0,
       scrollbarThumbBorderColor: '#232E33',
       isThumbColorPickerOpen: false,
@@ -89,19 +89,26 @@ export default {
         this.isThumbBorderColorPickerOpen = false;
       }
     },
+    createCSSVariables() {
+      return {
+        '--thumb-color': this.thumbColor,
+        '--track-color': this.trackColor,
+        '--scrollbar-width': this.width + 'px',
+        '--scrollbar-border-radius': this.scrollbarBorderRadius + 'px',
+        '--scrollbar-thumb-border-width': this.scrollbarThumbBorderWidth + 'px',
+        '--scrollbar-thumb-border-color': this.scrollbarThumbBorderColor,
+      };
+    },
     copyCSSCode() {
       let code = `
 body {
   --sb-track-color: ${this.trackColor};
   --sb-thumb-color: ${this.thumbColor};
   --sb-size: ${this.width}px;
-
-  scrollbar-color: var(--sb-thumb-color) 
-                   var(--sb-track-color);
 }
 
 body::-webkit-scrollbar {
-  width: var(--sb-size) 
+  width: var(--sb-size)
 }
 
 body::-webkit-scrollbar-track {
@@ -122,7 +129,14 @@ body::-webkit-scrollbar-thumb {
         ';'
       : ''
   }
-  }`;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}`;
       navigator.clipboard.writeText(code);
       this.isCSSTextCopied = true;
       setTimeout(() => {
@@ -274,29 +288,14 @@ body::-webkit-scrollbar-thumb {
         </p>
       </div>
     </div>
-
-    <div class="scrollPreviewContainer">
-      <ScrollPreview
-        :trackColor="this.trackColor"
-        :thumbColor="this.thumbColor"
-        :scrollbarWidth="this.width"
-        :scrollbarBorderRadius="this.scrollbarBorderRadius"
-        :scrollbarThumbBorderWidth="this.scrollbarThumbBorderWidth"
-        :scrollbarThumbBorderColor="this.scrollbarThumbBorderColor"
-        :theme="theme"
-      />
-    </div>
     <div class="codeOutputContainer">
       <h2 :class="theme">Code</h2>
-      <code>
+      <code :style="createCSSVariables()">
         <pre class="codeOutput">
 body {
   --sb-track-color: {{ trackColor }};
   --sb-thumb-color: {{ thumbColor }};
   --sb-size: {{ width }}px;
-
-  scrollbar-color: var(--sb-thumb-color) 
-                   var(--sb-track-color);
 }
 
 body::-webkit-scrollbar {
@@ -322,7 +321,12 @@ body::-webkit-scrollbar-thumb {
                 '\n' +
                 '}'
               : '}'
-          }}</pre
+          }}
+
+@supports not selector(::-webkit-scrollbar) body {
+  scrollbar-color: var(--sb-thumb-color)
+                   var(--sb-track-color);
+}</pre
         >
       </code>
       <button @click="copyCSSCode" class="btn">
@@ -336,9 +340,9 @@ body::-webkit-scrollbar-thumb {
 <style scoped>
 .mainContainer {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-column-gap: 20px;
-  width: 75%;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 100px;
+  width: 45%;
   margin: 1rem auto;
 }
 .colorBox {
@@ -385,6 +389,43 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
 }
 
+code {
+  height: 500px;
+  overflow-y: scroll;
+  background: #232e3363;
+  background: var(--color-preview-background);
+  border-radius: 5px;
+  border: 1px solid var(--color-preview-border);
+  padding: 2rem;
+  display: block;
+  margin-top: 1rem;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  code {
+    scrollbar-color: var(--thumb-color) var(--track-color);
+    scrollbar-width: auto;
+  }
+}
+/* width */
+code::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
+/* Track */
+code::-webkit-scrollbar-track {
+  background: var(--track-color);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+/* Handle */
+code::-webkit-scrollbar-thumb {
+  background: var(--thumb-color);
+  border-radius: var(--scrollbar-border-radius);
+  border: var(--scrollbar-thumb-border-width) solid
+    var(--scrollbar-thumb-border-color);
+}
+
 header {
   display: flex;
   flex-direction: row;
@@ -405,10 +446,6 @@ h3 {
 h3.light {
   color: #000000;
 }
-
-.codeOutput {
-  margin-top: 1rem;
-}
 .btn {
   display: block;
   border: none;
@@ -417,7 +454,7 @@ h3.light {
   border-radius: 10px;
   cursor: pointer;
   width: 170px;
-  margin: 10px;
+  margin-top: 20px;
   padding: 15px 45px;
   text-align: center;
   text-transform: uppercase;
@@ -480,13 +517,35 @@ h3.light {
   width: 32px;
 }
 
+@media screen and (max-width: 2240px) {
+  .mainContainer {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1570px) {
+  .mainContainer {
+    width: 70%;
+  }
+}
+
 @media screen and (max-width: 1260px) {
   .mainContainer {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .mainContainer {
     grid-template-areas:
-      'settings preview preview'
-      'settings preview preview'
-      'code preview preview';
+      'settings settings settings'
+      'settings settings settings'
+      'code code code';
     grid-template-rows: auto;
+  }
+
+  .githubBtnContainer {
+    display: none;
   }
   .settingsContainer {
     grid-area: settings;
