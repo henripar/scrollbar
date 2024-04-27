@@ -15,12 +15,14 @@ export default {
     return {
       thumbColor: '#6BAF8D',
       trackColor: '#232E33',
-      width: 14,
+      cornerColor: '#232E33',
+      size: 14,
       scrollbarBorderRadius: 3,
       scrollbarThumbBorderWidth: 0,
       scrollbarThumbBorderColor: '#232E33',
       isThumbColorPickerOpen: false,
       isTrackColorPickerOpen: false,
+      isCornerColorPickerOpen: false,
       isThumbBorderColorPickerOpen: false,
       isCSSTextCopied: false,
       isFirefox: isFirefoxBrowser,
@@ -38,15 +40,18 @@ export default {
     updateTrackColor(e) {
       this.trackColor = e;
     },
+    updateCornerColor(e) {
+      this.cornerColor = e;
+    },
     updateThumbBorderColor(e) {
       this.scrollbarThumbBorderColor = e;
     },
     updateScrollbarWidth(e) {
       if (e == 'add') {
-        this.width = this.width + 1;
+        this.size = this.size + 1;
       }
       if (e == 'reduce') {
-        this.width = this.width - 1;
+        this.size = this.size - 1;
       }
     },
     updateScrollbarBorderRadius(e) {
@@ -70,14 +75,22 @@ export default {
         this.isThumbColorPickerOpen = !this.isThumbColorPickerOpen;
         this.isTrackColorPickerOpen = false;
         this.isThumbBorderColorPickerOpen = false;
+        this.isCornerColorPickerOpen = false;
       } else if (position === 'track') {
         this.isTrackColorPickerOpen = !this.isTrackColorPickerOpen;
         this.isThumbColorPickerOpen = false;
+        this.isThumbBorderColorPickerOpen = false;
+        this.isCornerColorPickerOpen = false;
+      } else if (position === 'corner') {
+        this.isCornerColorPickerOpen = !this.isCornerColorPickerOpen;
+        this.isThumbColorPickerOpen = false;
+        this.isTrackColorPickerOpen = false;
         this.isThumbBorderColorPickerOpen = false;
       } else if (position === 'thumbBorder') {
         this.isThumbBorderColorPickerOpen = !this.isThumbBorderColorPickerOpen;
         this.isThumbColorPickerOpen = false;
         this.isTrackColorPickerOpen = false;
+        this.isCornerColorPickerOpen = false;
       }
     },
     closeColorPicker(position) {
@@ -85,6 +98,8 @@ export default {
         this.isThumbColorPickerOpen = false;
       } else if (position === 'track') {
         this.isTrackColorPickerOpen = false;
+      } else if (position === 'corner'){
+        this.isCornerColorPickerOpen = false;
       } else if (position === 'thumbBorder') {
         this.isThumbBorderColorPickerOpen = false;
       }
@@ -93,7 +108,8 @@ export default {
       return {
         '--thumb-color': this.thumbColor,
         '--track-color': this.trackColor,
-        '--scrollbar-width': this.width + 'px',
+        '--corner-color': this.cornerColor,
+        '--scrollbar-size': this.size + 'px',
         '--scrollbar-border-radius': this.scrollbarBorderRadius + 'px',
         '--scrollbar-thumb-border-width': this.scrollbarThumbBorderWidth + 'px',
         '--scrollbar-thumb-border-color': this.scrollbarThumbBorderColor,
@@ -104,7 +120,8 @@ export default {
 body {
   --sb-track-color: ${this.trackColor};
   --sb-thumb-color: ${this.thumbColor};
-  --sb-size: ${this.width}px;
+  --sb-corner-color: ${this.cornerColor};
+  --sb-size: ${this.size}px;
 }
 
 body::-webkit-scrollbar {
@@ -129,6 +146,10 @@ body::-webkit-scrollbar-thumb {
         ';'
       : ''
   }
+}
+
+body::-webkit-scrollbar-corner {
+  background: var(--sb-corner-color);
 }
 
 @supports not selector(::-webkit-scrollbar) {
@@ -191,13 +212,28 @@ body::-webkit-scrollbar-thumb {
           />
         </span>
       </div>
+      <div class="colorPickerContainer">
+        <span>Corner Color</span>
+        <span v-click-outside="() => closeColorPicker('corner')">
+          <span
+            @click="toggleColorPicker('corner')"
+            :style="{ background: cornerColor }"
+            class="colorBox"
+          />
+          <ColorPicker
+            v-if="isCornerColorPickerOpen"
+            @colorUpdated="updateCornerColor"
+            :color="cornerColor"
+          />
+        </span>
+      </div>
       <div v-if="!isFirefox" class="scrollBarSettingContiner">
-        <label for="width">Scrollbar Width</label>
+        <label for="width">Scrollbar Size</label>
         <NumberInput
           @numberUpdated="updateScrollbarWidth"
           min="1"
           max="50"
-          :number="width"
+          :number="size"
           :theme="theme"
         />
       </div>
@@ -291,11 +327,12 @@ body::-webkit-scrollbar-thumb {
     <div class="codeOutputContainer">
       <h2 :class="theme">Code</h2>
       <code :style="createCSSVariables()">
-        <pre class="codeOutput">
+        <pre class="codeOutput" style="width: 900px;">
 body {
   --sb-track-color: {{ trackColor }};
   --sb-thumb-color: {{ thumbColor }};
-  --sb-size: {{ width }}px;
+  --sb-corner-color: {{ cornerColor }};
+  --sb-size: {{ size }}px;
 }
 
 body::-webkit-scrollbar {
@@ -322,6 +359,10 @@ body::-webkit-scrollbar-thumb {
                 '}'
               : '}'
           }}
+
+body::-webkit-scrollbar-corner {
+  background: var(--sb-corner-color);
+}
 
 @supports not selector(::-webkit-scrollbar) {
   body {
@@ -392,8 +433,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 code {
+  width: 700px;
   height: 500px;
-  overflow-y: scroll;
+  overflow: scroll;
   background: #232e3363;
   background: var(--color-preview-background);
   border-radius: 5px;
@@ -405,13 +447,14 @@ code {
 
 @supports not selector(::-webkit-scrollbar) {
   code {
-    scrollbar-color: var(--thumb-color) var(--track-color);
+    scrollbar-color: var(--thumb-color) var(--track-color) var(--corner-color);
     scrollbar-width: auto;
   }
 }
 /* width */
 code::-webkit-scrollbar {
-  width: var(--scrollbar-width);
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
 }
 
 /* Track */
@@ -426,6 +469,11 @@ code::-webkit-scrollbar-thumb {
   border-radius: var(--scrollbar-border-radius);
   border: var(--scrollbar-thumb-border-width) solid
     var(--scrollbar-thumb-border-color);
+}
+
+/* Corner */
+code::-webkit-scrollbar-corner {
+  background: var(--corner-color);
 }
 
 header {
