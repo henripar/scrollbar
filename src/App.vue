@@ -222,7 +222,7 @@ body::-webkit-scrollbar-thumb {
         />
       </div>
       <div v-if="!isFirefox" class="colorPickerContainer">
-        <span>Thumb Border Color Color</span>
+        <span>Thumb Border Color</span>
         <span v-click-outside="() => closeColorPicker('thumbBorder')">
           <span
             @click="toggleColorPicker('thumbBorder')"
