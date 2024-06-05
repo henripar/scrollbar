@@ -105,6 +105,7 @@ body {
   --sb-track-color: ${this.trackColor};
   --sb-thumb-color: ${this.thumbColor};
   --sb-size: ${this.width}px;
+  --sb-border-radius: ${this.scrollbarBorderRadius}px;
 }
 
 body::-webkit-scrollbar {
@@ -113,12 +114,12 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-track {
   background: var(--sb-track-color);
-  border-radius: ${this.scrollbarBorderRadius}px;
+  border-radius: var(--sb-border-radius);
 }
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
-  border-radius: ${this.scrollbarBorderRadius}px;
+  border-radius: var(--sb-border-radius);
   ${
     this.scrollbarThumbBorderWidth > 0
       ? 'border: ' +
@@ -296,6 +297,7 @@ body {
   --sb-track-color: {{ trackColor }};
   --sb-thumb-color: {{ thumbColor }};
   --sb-size: {{ width }}px;
+  --sb-border-radius: {{ scrollbarBorderRadius }}px;
 }
 
 body::-webkit-scrollbar {
@@ -304,12 +306,12 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-track {
   background: var(--sb-track-color);
-  border-radius: {{ scrollbarBorderRadius }}px;
+  border-radius: var(--sb-border-radius);
 }
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
-  border-radius: {{ scrollbarBorderRadius }}px;
+  border-radius: var(--sb-border-radius);
 {{
             scrollbarThumbBorderWidth > 0
               ? '  border: ' +
